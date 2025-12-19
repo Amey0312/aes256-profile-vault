@@ -1,103 +1,134 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { User, Mail, Lock, ArrowRight, Loader2, ShieldCheck } from 'lucide-react';
 import api from '../api';
+import AuthLayout from '../components/AuthLayout';
+
+const REGISTER_IMAGE = "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2532&auto=format&fit=crop";
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    aadhaar_number: ''
+  const [formData, setFormData] = useState({ 
+    username: '', 
+    email: '', 
+    password: '', 
+    aadhaar_number: '' 
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
     setLoading(true);
+    setError('');
+    
+    // Basic Validation
+    if(formData.aadhaar_number.length < 12) {
+        setError("Aadhaar Number must be at least 12 digits.");
+        setLoading(false);
+        return;
+    }
 
     try {
-      // API call to Django
       await api.post('/register/', formData);
-      alert('Registration Successful! Please login.');
       navigate('/login');
     } catch (err) {
-      console.error(err);
-      // Handle different types of errors (e.g., username already taken)
-      if (err.response && err.response.data) {
-        setError(JSON.stringify(err.response.data));
-      } else {
-        setError('Registration failed. Please try again.');
-      }
+      // Extract detailed Django error messages
+      const msg = err.response?.data 
+        ? Object.values(err.response.data).flat().join(' ') 
+        : 'Registration failed';
+      setError(msg);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Create Account</h2>
-        
-        {error && <div className="mb-4 p-2 bg-red-100 text-red-600 rounded text-sm break-words">{error}</div>}
-        
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Username</label>
-            <input 
-              type="text" name="username" required
-              className="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
-            <input 
-              type="email" name="email" required
-              className="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-              onChange={handleChange}
-            />
-          </div>
-          
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Password</label>
-            <input 
-              type="password" name="password" required
-              className="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold text-blue-800">Aadhaar / ID Number</label>
-            <input 
-              type="text" name="aadhaar_number" required
-              placeholder="e.g. 1234-5678-9012"
-              className="mt-1 w-full p-2 border-2 border-blue-200 rounded-md focus:ring-blue-500 focus:border-blue-500 bg-blue-50"
-              onChange={handleChange}
-            />
-            <p className="text-xs text-gray-500 mt-1">This will be encrypted (AES-256) before storage.</p>
-          </div>
-          
-          <button 
-            type="submit" disabled={loading}
-            className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition duration-200 disabled:bg-gray-400"
-          >
-            {loading ? 'Registering...' : 'Register'}
-          </button>
-        </form>
-        <p className="mt-4 text-center text-sm text-gray-600">
-          Already have an account? <Link to="/login" className="text-blue-500 hover:underline">Login</Link>
-        </p>
+    <AuthLayout 
+      title="Join the Future of Secure Banking."
+      subtitle="Create your account today and experience military-grade encryption for your personal data."
+      imageSrc={REGISTER_IMAGE}
+      isRightAligned={true} 
+    >
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold text-gray-900 mb-2 tracking-tight">Create Account</h1>
+        <p className="text-gray-500 text-lg">Start your journey with SecureVault today.</p>
       </div>
-    </div>
+
+      {error && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-100 text-red-600 rounded-xl text-sm">
+           {error}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        
+        {/* Username */}
+        <div className="relative group">
+            <input
+              type="text"
+              className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:bg-white focus:border-black focus:ring-1 focus:ring-black transition-all pl-12"
+              placeholder="Username"
+              value={formData.username}
+              onChange={(e) => setFormData({...formData, username: e.target.value})}
+              required
+            />
+            <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-black transition-colors" size={20} />
+        </div>
+
+        {/* Email */}
+        <div className="relative group">
+            <input
+              type="email"
+              className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:bg-white focus:border-black focus:ring-1 focus:ring-black transition-all pl-12"
+              placeholder="Email address"
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              required
+            />
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-black transition-colors" size={20} />
+        </div>
+
+        {/* Aadhaar (Specific Field) */}
+        <div className="relative group">
+            <input
+              type="text"
+              className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:bg-white focus:border-black focus:ring-1 focus:ring-black transition-all pl-12"
+              placeholder="Aadhaar Number (12 Digits)"
+              value={formData.aadhaar_number}
+              onChange={(e) => setFormData({...formData, aadhaar_number: e.target.value})}
+              required
+              maxLength={12}
+            />
+            <ShieldCheck className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-black transition-colors" size={20} />
+        </div>
+
+        {/* Password */}
+        <div className="relative group">
+            <input
+              type="password"
+              className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:bg-white focus:border-black focus:ring-1 focus:ring-black transition-all pl-12"
+              placeholder="Password"
+              value={formData.password}
+              onChange={(e) => setFormData({...formData, password: e.target.value})}
+              required
+            />
+            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-black transition-colors" size={20} />
+        </div>
+
+        <button 
+          type="submit" 
+          disabled={loading}
+          className="w-full bg-black text-white h-14 rounded-2xl font-semibold text-lg hover:bg-gray-900 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 mt-4 shadow-xl shadow-black/10"
+        >
+          {loading ? <Loader2 className="animate-spin" /> : <>Sign Up <ArrowRight size={20} /></>}
+        </button>
+      </form>
+
+      <p className="mt-8 text-center text-gray-500">
+        Already have an account? <Link to="/login" className="font-bold text-black hover:underline">Log in</Link>
+      </p>
+    </AuthLayout>
   );
 };
 

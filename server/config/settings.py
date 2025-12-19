@@ -106,7 +106,7 @@ DATABASES = {
     #     'PORT': '5432',
     # }
     'default': dj_database_url.config(
-        default='postgresql://postgres:password@localhost:5432/secure_db',
+        default='postgresql://postgres:root@localhost:5432/users_db',
         conn_max_age=600
     )
 }
