@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +27,11 @@ SECRET_KEY = 'django-insecure-pooy$=!wqp^ul#_mv^02db@)=x1nq#o)s@s@!l^=6)&&6)j0hm
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173", # Vite
+    "http://localhost:3000", # Create React App
+]
 
 
 # Application definition
@@ -132,3 +138,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),  # Short lived for security
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),     # Long lived for convenience
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,                # Security: Invalidates old refresh tokens
+    'AUTH_HEADER_TYPES': ('Bearer',),                # We will send header as "Authorization: Bearer <token>"
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
