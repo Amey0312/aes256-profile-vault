@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 import os
-import dj_database_url # Import this at the top
+import dj_database_url 
 
 # 1. Update SECURITY WARNINGS
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-change-me')
