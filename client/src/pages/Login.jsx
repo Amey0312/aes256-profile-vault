@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Mail, Lock, ArrowRight, Loader2 } from 'lucide-react';
+import { Mail, Lock, ArrowRight, Loader2, Eye, EyeOff } from 'lucide-react'; // Import Eye/EyeOff
 import api from '../api';
 import AuthLayout from '../components/AuthLayout';
-import { useAuth } from '../context/AuthContext'; // IMPORT CONTEXT
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password view
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { login } = useAuth(); // USE LOGIN FROM CONTEXT
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +19,6 @@ const Login = () => {
     setError('');
     try {
       const res = await api.post('/login/', formData);
-      // Use Context Login Function
       login(res.data.access, res.data.refresh);
       navigate('/dashboard');
     } catch (err) {
@@ -28,14 +28,12 @@ const Login = () => {
     }
   };
 
-  // ... (Rest of your JSX remains exactly the same)
   return (
     <AuthLayout 
       title="Secure Access to Your Financial World."
       subtitle="Login to manage your encrypted vault and secure transactions with AES-256 protection."
     >
-        {/* ... Keep your existing Form JSX here ... */}
-        <div className="mb-10">
+      <div className="mb-10">
         <h1 className="text-4xl font-bold text-gray-900 mb-2 tracking-tight">Welcome Back</h1>
         <p className="text-gray-500 text-lg">Please enter your details to sign in.</p>
       </div>
@@ -66,14 +64,24 @@ const Login = () => {
           <label className="text-xs font-semibold text-gray-900 uppercase tracking-wide ml-1">Password</label>
           <div className="relative group">
             <input
-              type="password"
-              className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:bg-white focus:border-black focus:ring-1 focus:ring-black transition-all duration-300 pl-12"
+              type={showPassword ? "text" : "password"} // Dynamic Type
+              className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:bg-white focus:border-black focus:ring-1 focus:ring-black transition-all duration-300 pl-12 pr-12" // Added pr-12 for eye icon space
               placeholder="••••••••"
               value={formData.password}
               onChange={(e) => setFormData({...formData, password: e.target.value})}
               required
             />
+            {/* Lock Icon (Left) */}
             <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-black transition-colors" size={20} />
+            
+            {/* Eye Icon Button (Right) */}
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition-colors focus:outline-none"
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
           </div>
         </div>
 

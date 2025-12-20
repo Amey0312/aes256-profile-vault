@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { User, Mail, Lock, ArrowRight, Loader2, ShieldCheck } from 'lucide-react';
+import { User, Mail, Lock, ArrowRight, Loader2, ShieldCheck, Eye, EyeOff } from 'lucide-react'; // Import Eye/EyeOff
 import api from '../api';
 import AuthLayout from '../components/AuthLayout';
-
-const REGISTER_IMAGE = "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2532&auto=format&fit=crop";
 
 const Register = () => {
   const [formData, setFormData] = useState({ 
@@ -13,6 +11,7 @@ const Register = () => {
     password: '', 
     aadhaar_number: '' 
   });
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password view
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -47,7 +46,6 @@ const Register = () => {
     <AuthLayout 
       title="Join the Future of Secure Banking."
       subtitle="Create your account today and experience military-grade encryption for your personal data."
-      imageSrc={REGISTER_IMAGE}
       isRightAligned={true} 
     >
       <div className="mb-8">
@@ -106,14 +104,24 @@ const Register = () => {
         {/* Password */}
         <div className="relative group">
             <input
-              type="password"
-              className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:bg-white focus:border-black focus:ring-1 focus:ring-black transition-all pl-12"
+              type={showPassword ? "text" : "password"} // Dynamic Type
+              className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:bg-white focus:border-black focus:ring-1 focus:ring-black transition-all pl-12 pr-12" // Added pr-12
               placeholder="Password"
               value={formData.password}
               onChange={(e) => setFormData({...formData, password: e.target.value})}
               required
             />
+            {/* Lock Icon (Left) */}
             <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-black transition-colors" size={20} />
+            
+             {/* Eye Icon Button (Right) */}
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition-colors focus:outline-none"
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
         </div>
 
         <button 
