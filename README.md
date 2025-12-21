@@ -102,7 +102,15 @@ Dynamic Dashboard that randomly loads distinct themes (Shark/Frog) on every sess
 
 https://github.com/user-attachments/assets/eb05c861-ac4a-4d96-a362-c232989583c3
 
+##  AI Tool Usage Log 
 
+*As per assignment requirements, this section documents the use of AI tools during development.*
+
+| Section | Detail |
+| :--- | :--- |
+| **AI-Assisted Tasks** | 1. **Backend Encryption:** Generated manual Python class for AES-128 encryption (substitution box, matrix multiplication) to understand the algorithm without libraries, then implemented it using the standard library for production safety.<br>2. **Frontend Animations:** Generated GSAP timeline boilerplate for the Dashboard "Card Stack" and "Moving Eye" animations.<br>3. **Unit Testing:** Used AI and YouTube resources to learn Jest setup and implemented test cases for Register & Login endpoints.<br>4. **Debugging:** Refactored the `AuthLayout.jsx` responsive logic to fix the mobile view overflow issue. |
+| **Effectiveness Score** | **4 / 5** |
+| **Justification** | AI significantly accelerated the boilerplate setup for React components and complex GSAP animations, saving hours of CSS tweaking. However, the manual AES implementation required deep understanding of the algorithm first, followed by switching to the library implementation to ensure security and save development time. |
 
 ## 🗄️ Database Schema
 
@@ -128,3 +136,4 @@ erDiagram
         datetime timestamp
         string status
     }
+
