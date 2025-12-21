@@ -85,27 +85,27 @@ The full API collection is available for import in Postman.
 ## 🗄️ Database Schema
 
     ```mermaid
-    erDiagram
-        USER ||--o{ TRANSACTION : "sends"
-        USER ||--o{ TRANSACTION : "receives"
+        erDiagram
+            USER ||--o{ TRANSACTION : "sends"
+            USER ||--o{ TRANSACTION : "receives"
 
-        USER {
-            int id PK
-            string username
-            string email
-            string password_hash
-            string aadhaar_number "AES-256 Encrypted"
-            decimal balance
-        }
+            USER {
+                int id PK
+                string username
+                string email
+                string password_hash
+                string aadhaar_number "AES-256 Encrypted"
+                decimal balance
+            }
 
-        TRANSACTION {
-            int id PK
-            int sender_id FK
-            int receiver_id FK
-            decimal amount
-            datetime timestamp
-            string status
-        }
+            TRANSACTION {
+                int id PK
+                int sender_id FK
+                int receiver_id FK
+                decimal amount
+                datetime timestamp
+                string status
+            }
 
 ### 📸 Project Screenshots
 1. Authentication Pages
@@ -119,9 +119,9 @@ Dynamic Dashboard that randomly loads distinct themes (Shark/Frog) on every sess
 <div style="display: flex; gap: 10px;"> <img src="./Dashboard-page.png" alt="Shark Theme Dashboard" width="48%"> <img src="./Dashboard-page1.png" alt="Frog Theme Dashboard" width="48%"> </div>
 
 3. Security & Audit Logs
-Encrypted ID storage and immutable transaction history.
-
-<div style="display: flex; gap: 10px;"> <img src="./encrypted-id.png" alt="Encrypted ID Proof" width="48%"> <img src="./audit-log-for-insurance.png" alt="Audit Log" width="48%"> </div>
+ Immutable transaction history.
+<div style="display: flex; gap: 10px;">  <img src="./audit-log-for-individual.png" alt="Audit Log" width="48%">  <img src="./transaction.png" alt="Encrypted ID Proof" width="48%"> </div>
 
 4. Database Structure
-PostgreSQL tables managed via pgAdmin. <img src="./transaction.png" alt="Database Tables" width="100%">
+PostgreSQL tables managed via pgAdmin, Encrypted ID storage.
+<img src="./encrypted-id.png" alt="Database Tables" width="48%">
