@@ -84,28 +84,28 @@ The full API collection is available for import in Postman.
 
 ## 🗄️ Database Schema
 
-```mermaid
-erDiagram
-    USER ||--o{ TRANSACTION : "sends"
-    USER ||--o{ TRANSACTION : "receives"
+    ```mermaid
+    erDiagram
+        USER ||--o{ TRANSACTION : "sends"
+        USER ||--o{ TRANSACTION : "receives"
 
-    USER {
-        int id PK
-        string username
-        string email
-        string password_hash
-        string aadhaar_number "AES-256 Encrypted"
-        decimal balance
-    }
+        USER {
+            int id PK
+            string username
+            string email
+            string password_hash
+            string aadhaar_number "AES-256 Encrypted"
+            decimal balance
+        }
 
-    TRANSACTION {
-        int id PK
-        int sender_id FK
-        int receiver_id FK
-        decimal amount
-        datetime timestamp
-        string status
-    }
+        TRANSACTION {
+            int id PK
+            int sender_id FK
+            int receiver_id FK
+            decimal amount
+            datetime timestamp
+            string status
+        }
 
 ### 📸 Project Screenshots
 1. Authentication Pages
