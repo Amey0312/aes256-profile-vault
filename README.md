@@ -116,7 +116,7 @@ Secure Login and Registration with visual feedback.
 2. Dashboard (Themes)
 Dynamic Dashboard that randomly loads distinct themes (Shark/Frog) on every session.
 
-<div style="display: flex; gap: 10px;"> <img src="./Dashboard-page-shark.png" alt="Shark Theme Dashboard" width="48%"> <img src="./Dashboard-page-frog.png" alt="Frog Theme Dashboard" width="48%"> </div>
+<div style="display: flex; gap: 10px;"> <img src="./Dashboard-page.png" alt="Shark Theme Dashboard" width="48%"> <img src="./Dashboard-page1.png" alt="Frog Theme Dashboard" width="48%"> </div>
 
 3. Security & Audit Logs
 Encrypted ID storage and immutable transaction history.
