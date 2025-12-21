@@ -97,6 +97,13 @@ Dynamic Dashboard that randomly loads distinct themes (Shark/Frog) on every sess
  Immutable transaction history.
 <div style="display: flex; gap: 10px;">  <img src="./audit-log-for-individual.png" alt="Audit Log" width="30%" height="30%">  <img src="./transaction.png" alt="Encrypted ID Proof" width="30%" height="30%" > </div>
 
+
+### Video
+
+https://github.com/user-attachments/assets/eb05c861-ac4a-4d96-a362-c232989583c3
+
+
+
 ## 🗄️ Database Schema
 
 ```mermaid
