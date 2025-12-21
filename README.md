@@ -2,24 +2,24 @@
 # SecureVault - Secure User Profile & Transaction System
 
 ## 📌 Project Overview
-**SecureVault** is an Identity Management and Financial Transaction Microservice designed to demonstrate secure handling of sensitive user data, fulfilling **Assignment 1** of the evaluation requirements.
+**SecureVault** is an Identity Management and Financial Transaction Microservice designed to demonstrate secure handling of sensitive user data, fulfilling **Assignment 1** along with **Assignment 2** transaction & audict feature of the evaluation requirements.
 
 **Key Features:**
-* [cite_start]**Secure Authentication:** Stateless authentication using JWT (JSON Web Tokens)[cite: 7].
-* [cite_start]**Data Encryption:** The Aadhaar/ID Number is stored in the database using **AES-256 encryption** (manual implementation/library) and is only decrypted when sent to the authorized client[cite: 7].
+* **Secure Authentication:** Stateless authentication using JWT (JSON Web Tokens).
+* **Data Encryption:** The Aadhaar/ID Number is stored in the database using **AES-256 encryption** (library) and is only decrypted when sent to the authorized client.
 * **Financial Transactions:** A secure "Quick Transfer" feature that ensures atomicity using database transactions.
 * **Audit Logging:** An immutable transaction history (Audit Log) for tracking all fund transfers.
-* [cite_start]**Responsive Dashboard:** A dynamic frontend featuring distinct visual themes (Shark/Frog) and real-time updates[cite: 7].
+* **Responsive Dashboard:** A dynamic frontend featuring distinct visual themes (Shark/Frog) and real-time updates.
 
-## 🚀 Tech Stack
-* [cite_start]**Frontend:** React.js, Tailwind CSS, GSAP (Animations), Axios [cite: 13]
-* [cite_start]**Backend:** Python (Django/DRF) [cite: 12]
-* [cite_start]**Database:** PostgreSQL (configured in `settings.py`) [cite: 12]
+## Tech Stack
+* **Frontend:** React.js, Tailwind CSS, GSAP (Animations), Axios 
+* **Backend:** Python (Django) 
+* **Database:** PostgreSQL (configured in `settings.py`) 
 * **Security:** AES-256 Encryption, JWT Authentication
 
 ---
 
-## 🌍 Deployment
+##  Deployment
 * **Client:** [Vercel Link](https://aes256-profile-vault.vercel.app/)
 * **Server:** Render
 * **Database:** Render (PostgreSQL)
@@ -37,7 +37,7 @@ Ensure you have the following installed:
 ### 2. Frontend Setup (React with Vite)
     ```bash
     # Clone the repository
-    git clone <your-repo-link>
+    git clone https://github.com/Amey0312/aes256-profile-vault.git
     cd client
 
     # Install dependencies
@@ -106,3 +106,22 @@ erDiagram
         datetime timestamp
         string status
     }
+
+### 📸 Project Screenshots
+1. Authentication Pages
+Secure Login and Registration with visual feedback.
+
+<div style="display: flex; gap: 10px;"> <img src="./Login-page.png" alt="Login Page" width="48%"> <img src="./register-page.png" alt="Register Page" width="48%"> </div>
+
+2. Dashboard (Themes)
+Dynamic Dashboard that randomly loads distinct themes (Shark/Frog) on every session.
+
+<div style="display: flex; gap: 10px;"> <img src="./Dashboard-page-shark.png" alt="Shark Theme Dashboard" width="48%"> <img src="./Dashboard-page-frog.png" alt="Frog Theme Dashboard" width="48%"> </div>
+
+3. Security & Audit Logs
+Encrypted ID storage and immutable transaction history.
+
+<div style="display: flex; gap: 10px;"> <img src="./encrypted-id.png" alt="Encrypted ID Proof" width="48%"> <img src="./audit-log-for-insurance.png" alt="Audit Log" width="48%"> </div>
+
+4. Database Structure
+PostgreSQL tables managed via pgAdmin. <img src="./transaction.png" alt="Database Tables" width="100%">
