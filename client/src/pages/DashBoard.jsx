@@ -180,7 +180,7 @@ const Dashboard = () => {
                         <div className="flex flex-col sm:flex-row gap-4">
                             <div className="flex-1 bg-white p-5 rounded-[2rem] shadow-lg flex flex-col justify-between hover:scale-[1.02] transition-transform">
                                 <div className="text-gray-400 text-[10px] font-black uppercase flex items-center gap-1"><Wallet size={12}/> Balance</div>
-                                <div className="text-3xl font-black text-black tracking-tighter">${profile?.balance}</div>
+                                <div className="text-3xl font-black text-black tracking-tighter">₹{profile?.balance}</div>
                             </div>
                             <div className="flex-1 bg-black p-5 rounded-[2rem] shadow-lg flex flex-col justify-between text-white relative overflow-hidden group hover:scale-[1.02] transition-transform">
                                 <div className="text-teal-400 text-[10px] font-black uppercase flex items-center gap-1"><ShieldCheck size={12}/>Aadhar/ ID (AES-256)</div>
@@ -200,7 +200,7 @@ const Dashboard = () => {
                                     {users.map(u => <option key={u.username} value={u.username}>{u.username}</option>)}
                                 </select>
                                 <div className="flex gap-2 sm:flex-[1]">
-                                    <input type="number" placeholder="$" className="w-full bg-gray-50 rounded-xl p-3 text-xs font-bold text-gray-700 outline-none focus:ring-2 focus:ring-[#e7008a]"
+                                    <input type="number" placeholder="₹" className="w-full bg-gray-50 rounded-xl p-3 text-xs font-bold text-gray-700 outline-none focus:ring-2 focus:ring-[#e7008a]"
                                         value={transferData.amount} onChange={(e) => setTransferData({...transferData, amount: e.target.value})} />
                                     <button type="submit" className="bg-[#e7008a] text-white px-4 rounded-xl font-black text-xs hover:bg-[#c50075] transition">PAY</button>
                                 </div>
@@ -220,7 +220,7 @@ const Dashboard = () => {
                                                     <div className={`w-6 h-6 rounded flex items-center justify-center font-black text-[10px] ${isSender ? 'bg-red-100 text-red-600' : 'bg-teal-100 text-teal-600'}`}>{isSender ? '↑' : '↓'}</div>
                                                     <p className="font-bold text-xs text-gray-900">{isSender ? tx.receiver_name : tx.sender_name}</p>
                                                 </div>
-                                                <span className={`font-black text-xs ${isSender ? 'text-black' : 'text-teal-600'}`}>{isSender ? '-' : '+'}${tx.amount}</span>
+                                                <span className={`font-black text-xs ${isSender ? 'text-black' : 'text-teal-600'}`}>{isSender ? '-' : '+'}₹{tx.amount}</span>
                                             </div>
                                         )
                                     })

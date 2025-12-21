@@ -36,16 +36,18 @@ Ensure you have the following installed:
 
 ### 2. Frontend Setup (React with Vite)
 ```bash
-# Clone the repository
-git clone <your-repo-link>
-cd client
+    # Clone the repository
+    git clone <your-repo-link>
+    cd client
 
-# Install dependencies
-npm install
+    # Install dependencies
+    npm install
 
-# Start the Development Server
-npm run dev
-The Frontend will typically run at http://localhost:5173/3. Backend Setup (Django)Bashcd server
+    # Start the Development Server
+    npm run dev
+    The Frontend will typically run at http://localhost:5173/
+    
+## 3. Backend Setup (Django)Bashcd server
 
 # Create virtual environment
 python -m venv venv
