@@ -35,7 +35,7 @@ Ensure you have the following installed:
 * Git
 
 ### 2. Frontend Setup (React with Vite)
-```bash
+    ```bash
     # Clone the repository
     git clone <your-repo-link>
     cd client
@@ -45,31 +45,32 @@ Ensure you have the following installed:
 
     # Start the Development Server
     npm run dev
-    The Frontend will typically run at http://localhost:5173/
+    The Frontend will typically run at http://localhost:5173
+
+### 3. Backend Setup (Django)
+    ```bash
+    cd server
     
-## 3. Backend Setup (Django)Bashcd server
+    
+    # Create virtual environment
+    python -m venv venv
+    # Activate virtual environment
+    source venv/bin/activate  # On Windows use: venv\Scripts\activate
 
-# Create virtual environment
-python -m venv venv
-# Activate virtual environment
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
+    # Install dependencies
+    pip install -r requirements.txt
 
-# Install dependencies
-pip install -r requirements.txt
+    # Run Database Migrations
+    python manage.py makemigrations
+    python manage.py migrate
 
-# Run Database Migrations
-python manage.py makemigrations
-python manage.py migrate
-
-# Start the Server
-python manage.py runserver
+    # Start the Server
+    python manage.py runserver
 The Backend will typically run at http://127.0.0.1:8000/
 
-
-📡 API Documentation
+### 📡 API Documentation
 The full API collection is available for import in Postman.
-
-[Run in Postman](https://.postman.co/workspace/My-Workspace~66145507-479c-49da-836b-e3cec435fdf6/request/32895248-01ef6c15-72f8-4385-b2ba-d6f15e8ed35f?action=share&creator=32895248)
+[Postman Link](https://.postman.co/workspace/My-Workspace~66145507-479c-49da-836b-e3cec435fdf6/request/32895248-01ef6c15-72f8-4385-b2ba-d6f15e8ed35f?action=share&creator=32895248)
 
 ### **Quick Endpoint Reference**
 
