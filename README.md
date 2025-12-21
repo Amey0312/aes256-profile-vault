@@ -84,7 +84,7 @@ The full API collection is available for import in Postman.
 
 ## 🗄️ Database Schema
 
-    ```mermaid
+        ```mermaid
         erDiagram
             USER ||--o{ TRANSACTION : "sends"
             USER ||--o{ TRANSACTION : "receives"
@@ -120,8 +120,5 @@ Dynamic Dashboard that randomly loads distinct themes (Shark/Frog) on every sess
 
 3. Security & Audit Logs
  Immutable transaction history.
-<div style="display: flex; gap: 10px;">  <img src="./audit-log-for-individual.png" alt="Audit Log" width="48%">  <img src="./transaction.png" alt="Encrypted ID Proof" width="48%"> </div>
+<div style="display: flex; gap: 10px;">  <img src="./audit-log-for-individual.png" alt="Audit Log" width="30%" height="30%">  <img src="./transaction.png" alt="Encrypted ID Proof" width="30%" height="30%" > </div>
 
-4. Database Structure
-PostgreSQL tables managed via pgAdmin, Encrypted ID storage.
-<img src="./encrypted-id.png" alt="Database Tables" width="48%">
