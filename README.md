@@ -18,6 +18,11 @@
 * **Security:** AES-256 Encryption, JWT Authentication
 
 ---
+## Demo login
+* **Website:** [Link](https://aes256-profile-vault.vercel.app/)
+* **Login:**
+* username: demo_user
+* password: Amey@031204 
 
 ##  Deployment
 * **Client:** [Vercel Link](https://aes256-profile-vault.vercel.app/)
